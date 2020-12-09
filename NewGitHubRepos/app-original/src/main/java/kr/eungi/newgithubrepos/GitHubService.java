@@ -5,7 +5,7 @@ import java.util.List;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
+import io.reactivex.rxjava3.core.*;
 
 /**
  * Retrofit으로 GitHub API를 이용히기 위한 클래스
