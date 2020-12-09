@@ -1,4 +1,4 @@
-package com.github.advanced_android.newgithubrepo;
+package kr.eungi.newgithubrepos;
 
 import android.app.Application;
 import android.util.Log;

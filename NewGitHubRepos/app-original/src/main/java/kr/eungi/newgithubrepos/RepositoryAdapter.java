@@ -1,11 +1,23 @@
 package kr.eungi.newgithubrepos;
 
+import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class RepositoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final OnRepositoryItemClickListener onRepositoryItemClickListener;
+    private final Context context;
+    private List<GitHubService.RepositoryItem> items;
+
+    public RepositoryAdapter(Context context, OnRepositoryItemClickListener onRepositoryItemClickListener) {
+        this.context = context;
+        this.onRepositoryItemClickListener = onRepositoryItemClickListener;
+    }
+
 
     @NonNull
     @Override
@@ -21,6 +33,9 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    public void setItemsAndRefresh(List<GitHubService.RepositoryItem> items) {
     }
 
 
