@@ -2,6 +2,7 @@ package kr.eungi.newgithubrepos;
 
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,19 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.reactivestreams.Subscription;
-
 import java.util.Calendar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Call;
 
+/**
+ * 리포지토리 목록을 표시하는 Activity
+ */
 public class RepositoryListActivity extends AppCompatActivity implements RepositoryAdapter.OnRepositoryItemClickListener {
-
-
+    private static final String TAG = Constant.TAG + RepositoryListActivity.class.getSimpleName();
     private static final String[] SEARCH_LANGUAGE = new String[]
             {"java", "objective-c", "swift", "groovy", "python", "ruby", "c"};
+
     private Spinner languageSpinner;
     private ProgressBar progressBar;
     private CoordinatorLayout coordinatorLayout;
@@ -75,16 +78,20 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // 선택시 뿐만 아니라 처음에도 호출된다
+                Log.d(TAG, "languageSpinner selected: " + position);
                 String language = (String) languageSpinner.getItemAtPosition(position);
                 loadRepositories(language);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 
     /**
      * 지난 1주일간 만들어진 라이브러리의 인기순으로 가져온다
+     *
      * @param language 가져올 프로그래밍 언어
      */
     private void loadRepositories(String language) {
@@ -100,10 +107,11 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
         final NewGitHubReposApplication application = (NewGitHubReposApplication) getApplication();
         // 지난 일주일간 만들어지고 언어가 language인 것을 요청으로 전달한다
         Observable<GitHubService.Repositories> observable = application.getGitHubService().listRepos("language:" + language + " " + "created:>" + text);
+        Call<GitHubService.Repositories> observable2 = application.getGitHubService().listRepos2("language:" + language + " " + "created:>" + text);
+
         // 입출력(IO)용 스레드로 통신하고, 메인스레드에서 결과를 수신하게 한다
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                 (repositories) -> {
-
                     // 로딩이 끝났으므로 진행바를 표시하지 않는다
                     progressBar.setVisibility(View.GONE);
                     // 가져온 아이템을 표시하고자 RecyclerView에 아이템을 설정하고 갱신한다
@@ -122,8 +130,13 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
     }
 
 
+    /**
+     * 상세화면을 표시한다
+     *
+     * @see RepositoryAdapter.OnRepositoryItemClickListener#onRepositoryItemClick
+     */
     @Override
     public void onRepositoryItemClick(GitHubService.RepositoryItem item) {
-
+        DetailActivity.start(this, item.full_name);
     }
 }

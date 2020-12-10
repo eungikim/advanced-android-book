@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.eungi.newgithubrepos">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".NewGitHubReposApplication"
         android:allowBackup="true"
@@ -20,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DetailActivity" />
     </application>
 
 </manifest>
