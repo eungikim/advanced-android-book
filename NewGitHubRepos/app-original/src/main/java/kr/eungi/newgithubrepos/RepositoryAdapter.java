@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.RepoViewHolder> {
@@ -29,8 +31,6 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
 
     /**
      * 리포지토리의 데이터를 설정해서 갱신한다
-     *
-     * @param items
      */
     public void setItemsAndRefresh(List<GitHubService.RepositoryItem> items) {
         this.items = items;
@@ -44,8 +44,9 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
     /**
      * RecyclerView의 아이템 뷰 생성과 뷰를 유지할 ViewHolder를 생성
      */
+    @NotNull
     @Override
-    public RepoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RepoViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(context).inflate(R.layout.repo_item, parent, false);
         return new RepoViewHolder(view);
     }

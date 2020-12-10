@@ -40,7 +40,7 @@ public interface GitHubService {
      *
      * @see GitHubService#listRepos(String)
      */
-    public static class Repositories {
+    class Repositories {
 
         public final List<RepositoryItem> items;
 
@@ -56,7 +56,7 @@ public interface GitHubService {
      *
      * @see GitHubService#detailRepo(String, String)
      */
-    public static class RepositoryItem {
+    class RepositoryItem {
 
         public final String description;
         public final Owner owner;
@@ -85,7 +85,7 @@ public interface GitHubService {
      *
      * @see GitHubService#detailRepo(String, String)
      */
-    public static class Owner {
+    class Owner {
         public final String received_events_url;
         public final String organizations_url;
         public final String avatar_url;

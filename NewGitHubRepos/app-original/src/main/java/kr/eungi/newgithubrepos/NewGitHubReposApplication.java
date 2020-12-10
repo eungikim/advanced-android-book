@@ -12,8 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewGitHubReposApplication extends Application {
-    private Retrofit retrofit;
-    private GitHubService gitHubService;
+  private GitHubService gitHubService;
 
     @Override
     public void onCreate() {
@@ -34,12 +33,12 @@ public class NewGitHubReposApplication extends Application {
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();
 
-        retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .baseUrl("https://api.github.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
+      Retrofit retrofit = new Retrofit.Builder()
+              .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+              .baseUrl("https://api.github.com")
+              .addConverterFactory(GsonConverterFactory.create())
+              .client(client)
+              .build();
 
         gitHubService = retrofit.create(GitHubService.class);
     }
