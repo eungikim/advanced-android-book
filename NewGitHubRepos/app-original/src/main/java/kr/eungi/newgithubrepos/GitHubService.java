@@ -2,11 +2,10 @@ package kr.eungi.newgithubrepos;
 
 import java.util.List;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import io.reactivex.rxjava3.core.*;
 
 /**
  * Retrofit으로 GitHub API를 이용히기 위한 클래스
@@ -21,9 +20,6 @@ public interface GitHubService {
      */
     @GET("search/repositories?sort=stars&order=desc")
     Observable<Repositories> listRepos(@Query("q") String query);
-
-    @GET("search/repositories?sort=stars&order=desc")
-    Call<Repositories> listRepos2(@Query("q") String query);
 
     /**
      * 리포지토리 상세 내역을 가져온다

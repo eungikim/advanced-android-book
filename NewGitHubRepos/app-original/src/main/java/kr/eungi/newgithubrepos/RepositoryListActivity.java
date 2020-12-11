@@ -22,7 +22,6 @@ import java.util.Calendar;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Call;
 
 /**
  * 리포지토리 목록을 표시하는 Activity
@@ -107,7 +106,6 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
         final NewGitHubReposApplication application = (NewGitHubReposApplication) getApplication();
         // 지난 일주일간 만들어지고 언어가 language인 것을 요청으로 전달한다
         Observable<GitHubService.Repositories> observable = application.getGitHubService().listRepos("language:" + language + " " + "created:>" + text);
-        Call<GitHubService.Repositories> observable2 = application.getGitHubService().listRepos2("language:" + language + " " + "created:>" + text);
 
         // 입출력(IO)용 스레드로 통신하고, 메인스레드에서 결과를 수신하게 한다
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
