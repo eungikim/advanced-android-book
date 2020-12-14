@@ -92,8 +92,7 @@ public class RepositoryListActivity extends AppCompatActivity implements
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) { }
         });
     }
 
