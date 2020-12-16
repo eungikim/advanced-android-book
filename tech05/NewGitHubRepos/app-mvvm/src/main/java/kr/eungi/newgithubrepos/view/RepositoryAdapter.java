@@ -2,18 +2,27 @@ package kr.eungi.newgithubrepos.view;
 
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import kr.eungi.newgithubrepos.R;
 import kr.eungi.newgithubrepos.contract.RepositoryListViewContract;
+import kr.eungi.newgithubrepos.databinding.RepoItemBinding;
 import kr.eungi.newgithubrepos.model.GitHubService;
 import kr.eungi.newgithubrepos.viewmodel.RepositoryItemViewModel;
 
+/**
+ * RecyclerView에서 리포지토리 목록을 표시하기 위한 Adapter 클래스
+ * 이 클래스에 의해 RecyclerView 아이템의 뷰를 생성하고 뷰에 데이터를 넣는다
+ */
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.RepoViewHolder> {
     private final RepositoryListViewContract view;
     private final Context context;
@@ -24,22 +33,47 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
         this.view = view;
     }
 
-    @NonNull
-    @Override
-    public RepoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    /**
+     * 리포지토리의 데이터를 설정해서 갱신한다
+     */
+    public void setItemsAndRefresh(List<GitHubService.RepositoryItem> items) {
+        this.items = items;
+        notifyDataSetChanged();
     }
 
+    public GitHubService.RepositoryItem getItemAt(int position) {
+        return items.get(position);
+    }
+
+    /**
+     * RecyclerView의 아이템의 뷰 작성과 뷰를 보존할 ViewHolder를 생성
+     */
+    @NotNull
     @Override
-    public void onBindViewHolder(@NonNull RepoViewHolder holder, int position) {
+    public RepoViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        RepoItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.repo_item, parent, false);
+        binding.setViewModel(new RepositoryItemViewModel(view));
+        return new RepoViewHolder(binding.getRoot(), binding.getViewModel());
+    }
+
+    /**
+     * onCreateViewHolder에서 만든 ViewHolder의 뷰에
+     * setItemsAndRefresh(items)에서 설정된 데이터를 넣는다
+     */
+    @Override
+    public void onBindViewHolder(final RepoViewHolder holder, final int position) {
+        final GitHubService.RepositoryItem item = getItemAt(position);
+        holder.loadItem(item);
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (items == null) {
+            return 0;
+        }
+        return items.size();
     }
-
 
     /**
      * 뷰를 보존해 둘 클래스
@@ -57,4 +91,5 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
             viewModel.loadItem(item);
         }
     }
+
 }

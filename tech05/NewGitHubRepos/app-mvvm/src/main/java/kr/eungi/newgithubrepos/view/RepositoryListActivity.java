@@ -12,6 +12,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import kr.eungi.newgithubrepos.Constant;
 import kr.eungi.newgithubrepos.NewGitHubReposApplication;
 import kr.eungi.newgithubrepos.R;
@@ -60,18 +62,22 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
         languageSpinner.setAdapter(adapter);
     }
 
+    // =====RepositoryListViewContract 구현=====
+    // 여기서 viewModel 로부터 지시를 받아 뷰의 변경 등을 한다
+
+    @Override
+    public void startDetailActivity(String full_name) {
+        DetailActivity.start(this, full_name);
+    }
+
     @Override
     public void showRepositories(GitHubService.Repositories repositories) {
-
+        repositoryAdapter.setItemsAndRefresh(repositories.items);
     }
 
     @Override
     public void showError() {
-
-    }
-
-    @Override
-    public void startDetailActivity(String fullRepositoryName) {
-
+        Snackbar.make(coordinatorLayout, "읽을 수 없습니다", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 }

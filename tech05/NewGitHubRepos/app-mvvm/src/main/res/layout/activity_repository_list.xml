@@ -50,6 +50,7 @@
                 android:layout_margin="16dp"
                 android:fitsSystemWindows="true"
                 android:onItemSelected="@{viewModel::onLanguageSpinnerItemSelected}"
+                android:onNothingSelected="@{viewModel::onNothingSelected}"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>

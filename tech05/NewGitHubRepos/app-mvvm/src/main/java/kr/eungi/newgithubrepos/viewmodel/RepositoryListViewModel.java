@@ -1,6 +1,7 @@
 package kr.eungi.newgithubrepos.viewmodel;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -11,6 +12,7 @@ import java.util.Calendar;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kr.eungi.newgithubrepos.Constant;
 import kr.eungi.newgithubrepos.contract.RepositoryListViewContract;
 import kr.eungi.newgithubrepos.model.GitHubService;
 
@@ -18,6 +20,7 @@ import kr.eungi.newgithubrepos.model.GitHubService;
  * MVVM의 ViewModel 역할을 하는 클래스
  */
 public class RepositoryListViewModel {
+    private static final String TAG = Constant.TAG + RepositoryListViewModel.class.getSimpleName();
     public final ObservableInt progressBarVisibility = new ObservableInt(View.VISIBLE);
     private final RepositoryListViewContract repositoryListView;
     private final GitHubService gitHubService;
@@ -29,7 +32,12 @@ public class RepositoryListViewModel {
 
     public void onLanguageSpinnerItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //  스피너의 선택 내용이 바뀌면 호출된다
+        Log.d(TAG, "onLanguageSpinnerItemSelected pos: " + position);
         loadRepositories((String) parent.getItemAtPosition(position));
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        Log.d(TAG, "onNothingSelected: ");
     }
 
     /**
