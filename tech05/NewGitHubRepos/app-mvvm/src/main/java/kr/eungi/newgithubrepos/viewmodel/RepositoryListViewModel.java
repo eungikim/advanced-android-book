@@ -11,6 +11,7 @@ import java.util.Calendar;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kr.eungi.newgithubrepos.contract.RepositoryListViewContract;
 import kr.eungi.newgithubrepos.model.GitHubService;
 
 /**
@@ -34,7 +35,7 @@ public class RepositoryListViewModel {
     /**
      * 지난 일주일간 만들어진 라이브러리를 인기순으로 가져온다
      */
-    private void loadRepositories(String langugae) {
+    private void loadRepositories(String language) {
         // 로딩 중이므로 진행바를 표시한다
         progressBarVisibility.set(View.VISIBLE);
 
@@ -46,7 +47,7 @@ public class RepositoryListViewModel {
         // Retrofit을 이용해 서버에 액세스한다
 
         // 지난 일주일간 만들어졌고 언어가 language인 것을 쿼리로 전달한다
-        Observable<GitHubService.Repositories> observable = gitHubService.listRepos("language:" + langugae + " " + "created:>" + text);
+        Observable<GitHubService.Repositories> observable = gitHubService.listRepos("language:" + language + " " + "created:>" + text);
         // 입출력(IO)용 스레드로 통신하고, 메인스레드로 결과를 받도록 한다
         observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                 (repositories) -> {

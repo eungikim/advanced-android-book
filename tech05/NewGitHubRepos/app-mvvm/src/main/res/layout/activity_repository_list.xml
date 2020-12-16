@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fitsSystemWindows="true"
+                android:onItemSelected="@{viewModel::onLanguageSpinnerItemSelected}"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -60,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:visibility="@{viewModel.progressBarVisibility}"
             />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
