@@ -58,7 +58,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="contents" />
 
-        <!--android:layout_alignParentRight="true"-->
         <TextView
             android:id="@+id/repo_star"
             android:layout_width="wrap_content"
@@ -69,7 +68,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="9999" />
 
-        <!--android:layout_toLeftOf="@id/repo_star"-->
         <ImageView
             android:id="@id/repo_star_image"
             android:layout_width="wrap_content"

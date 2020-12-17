@@ -36,7 +36,7 @@ public class RepositoryListActivity extends AppCompatActivity implements Reposit
         super.onCreate(savedInstanceState);
         ActivityRepositoryListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_repository_list);
         final GitHubService gitHubService = ((NewGitHubReposApplication) getApplication()).getGitHubService();
-        binding.setViewModel(new RepositoryListViewModel((RepositoryListViewContract) this, gitHubService));
+        binding.setViewModel(new RepositoryListViewModel(this, gitHubService));
 
         // 뷰를 셋업
         setupViews(binding);
