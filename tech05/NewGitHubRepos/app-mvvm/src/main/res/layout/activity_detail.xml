@@ -2,7 +2,9 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
         <variable
@@ -30,11 +32,12 @@
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
+                bind:imageUrl="@{viewModel.repoImageUrl}"
+                android:onClick="@{viewModel::onTitleClick}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@android:drawable/sym_def_app_icon"
-                android:onClick="@{viewModel.onTitleClick}"
                 />
 
             <TextView
@@ -46,6 +49,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="32dp"
                 android:textAppearance="@android:style/TextAppearance.Large"
+                android:text="@{viewModel.repoFullName}"
+                android:onClick="@{viewModel::onTitleClick}"
                 app:layout_constraintEnd_toStartOf="@+id/repo_star_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/owner_image"
@@ -57,10 +62,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textAppearance="@android:style/TextAppearance"
+                android:text="@{viewModel.repoDetail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_barrier"
-                tools:text="this is detail text. aaaaaaaaaaaaaaaaaaaaaaaaa" />
+                tools:text="this is detail text." />
 
             <TextView
                 android:id="@+id/repo_star"
@@ -68,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textAppearance="@android:style/TextAppearance"
+                android:text="@{viewModel.repoStar}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/owner_image"
                 tools:text="contents" />
@@ -77,8 +84,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
                 android:src="@drawable/ic_star_black_18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/repo_star"
                 app:layout_constraintEnd_toStartOf="@+id/repo_star"
@@ -91,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textAppearance="@android:style/TextAppearance"
+                android:text="@{viewModel.repoFork}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repo_star"
                 tools:text="contents" />
@@ -100,8 +106,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
                 android:src="@drawable/ic_call_split_black_18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/repo_fork"
                 app:layout_constraintEnd_toStartOf="@+id/repo_fork"

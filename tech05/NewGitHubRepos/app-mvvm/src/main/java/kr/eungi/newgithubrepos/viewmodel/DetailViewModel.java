@@ -24,10 +24,6 @@ public class DetailViewModel {
         this.gitHubService = gitHubService;
     }
 
-    public void prepare() {
-        loadRepositories();
-    }
-
     /**
      * 하나의 리포지터리에 대한 정보를 가져온다
      * 기본적으로 API 액세스 방법에 대해서는 RepositoryListActivity#loadRepositories(String)와 같다

@@ -48,15 +48,15 @@ public class  DetailActivity extends AppCompatActivity implements DetailViewCont
         detailViewModel.loadRepositories();
     }
 
+
+    // =====DetailViewContract 구현=====
+    // 여기서 viewModel 로부터 지시를 받아 뷰의 변경 등을 한다
+
     @Override
     public String getFullRepositoryName() {
         return fullRepoName;
     }
 
-
-    /**
-     * @throws Exception
-     */
     @Override
     public void startBrowser(String url) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
