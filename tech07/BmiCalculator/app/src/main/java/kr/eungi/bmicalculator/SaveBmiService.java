@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class SaveBmiService extends IntentService {
-
     public static final String ACTION_RESULT = SaveBmiService.class.getName() + ".ACTION_RESULT";
     public static final String PARAM_RESULT = "param_result";
 
