@@ -1,8 +1,11 @@
 package kr.eungi.bmicalculator;
 
+import android.widget.EditText;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class MainActivityTest {
 
