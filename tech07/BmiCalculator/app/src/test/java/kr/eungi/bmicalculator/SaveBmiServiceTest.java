@@ -91,9 +91,4 @@ public class SaveBmiServiceTest {
         */
     }
 
-    @Test
-    public void saveToRemoteServer() {
-    }
-
-
 }
