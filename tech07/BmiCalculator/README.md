@@ -1,6 +1,7 @@
 ## 변경사항
 * LocalUnitTest project 합침
 * Mockito 샘플 추가
+* LocalBroadcastManager class 가 final class 로 변환되어 유닛 테스트 불가
 
 ## build config
 * com.android.tools.build:gradle:4.1.1
