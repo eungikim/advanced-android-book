@@ -47,17 +47,14 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener createButtonListener(final TextView weightText,
                                               final TextView heightText,
                                               final TextView resultText) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //결과 취득과 표시
-                BmiValue result = calculateBmiValue(weightText, heightText);
-                showCalcResult(resultText, result);
+        return v -> {
+            //결과 취득과 표시
+            BmiValue result = calculateBmiValue(weightText, heightText);
+            showCalcResult(resultText, result);
 
-                //Service를 사용해 보존 처리
-                startResultSaveService(result);
-                prepareReceiveResultSaveServiceAction();
-            }
+            //Service 를 사용해 보존 처리
+            startResultSaveService(result);
+            prepareReceiveResultSaveServiceAction();
         };
     }
 
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     @VisibleForTesting
     static class BmiSaveResultReceiver extends BroadcastReceiver {
 
-        private Button mCalcButton;
+        private final Button mCalcButton;
 
         BmiSaveResultReceiver(Button calcButton) {
             mCalcButton = calcButton;

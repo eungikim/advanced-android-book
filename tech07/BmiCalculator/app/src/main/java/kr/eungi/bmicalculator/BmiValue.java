@@ -28,9 +28,7 @@ public class BmiValue implements Serializable {
     }
 
     /**
-     * 소수점 아래 2자리까지의 부동소수점값
-     *
-     * @return
+     * @return 소수점 아래 2자리까지의 부동소수점값
      */
     public float toFloat() {
         int rounded = Math.round(mValue * 100);
@@ -38,7 +36,7 @@ public class BmiValue implements Serializable {
     }
 
     /**
-     * BMI에 따른 판정 메시지 반환
+     * @return BMI에 따른 판정 메시지 반환
      */
     public String getMessage() {
         if (mValue < 18.5f) {
