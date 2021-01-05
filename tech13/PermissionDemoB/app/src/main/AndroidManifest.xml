@@ -30,6 +30,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="kr.eungi.permissiondemob.ActivityC"
+            android:permission="undefined.permissiondemob.perm_launch_activity"
+            >
+            <intent-filter>
+                <action android:name="permissiondemob.ACTION_LAUNCH_APP_B_ACTIVITY_C" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
