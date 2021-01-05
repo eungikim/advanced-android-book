@@ -25,7 +25,7 @@
             android:permission="kr.eungi.permissiondemob.perm_launch_activity"
             >
             <intent-filter>
-                <action android:name="com.advanced_android.permissiondemob.ACTION_LAUNCH_APP_B" />
+                <action android:name="permissiondemob.ACTION_LAUNCH_APP_B" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

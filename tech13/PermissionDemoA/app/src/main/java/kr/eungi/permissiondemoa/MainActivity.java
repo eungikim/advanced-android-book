@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     startActivity(new Intent(
-                            "kr.eungi.permissiondemob.ACTION_LAUNCH_APP_B"));
+                            "permissiondemob.ACTION_LAUNCH_APP_B"));
                 } catch (ActivityNotFoundException anfe) {
                     Toast.makeText(
                             MainActivity.this,
