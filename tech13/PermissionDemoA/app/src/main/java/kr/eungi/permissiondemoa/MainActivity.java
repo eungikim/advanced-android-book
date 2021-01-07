@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     startActivity(new Intent(
-                            "permissiondemob.ACTION_LAUNCH_APP_B"));
+                            "permissiondemob.ACTION_LAUNCH_APP_B_ACTIVITY_B"));
                 } catch (ActivityNotFoundException anfe) {
                     Toast.makeText(
                             MainActivity.this,
@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(
                             MainActivity.this,
                             "PermissionDemoB 앱을 찾을 수 없습니다.",
+                            Toast.LENGTH_SHORT).show();
+                } catch (SecurityException se) {
+                    Toast.makeText(
+                            MainActivity.this,
+                            "PermissionDemoB 앱을 실행하기 위한 권한이 없습니다.",
                             Toast.LENGTH_SHORT).show();
                 }
             }
