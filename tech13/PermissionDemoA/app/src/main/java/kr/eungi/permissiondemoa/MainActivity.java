@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(
-                            "permissiondemob.ACTION_LAUNCH_APP_B_ACTIVITY_B"));
+                    startActivityForResult(new Intent(
+                            "permissiondemob.ACTION_LAUNCH_APP_B_ACTIVITY_B"), 0);
                 } catch (ActivityNotFoundException anfe) {
                     Toast.makeText(
                             MainActivity.this,
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // TODO: 거절됩니다.
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
