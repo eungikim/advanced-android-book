@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -12,12 +14,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        byte[] msg = new byte[]{(byte) 0x04};
-        byte[] encryptedMsg = Util.cipherEncrypt(msg, "asdf", "asd");
+        byte[] msg = "Hello World!".getBytes();
+        byte[] encryptedMsg = Util.cipherEncrypt(msg, "dlq345kdna+32!@dda", "92719248772324");
 
-        Log.d("TAG", "msg" + Util.byteArrayToHexString(msg, ' ', true));
+        Log.d("TAG", "msg" + Util.byteArrayToHexString(msg));
         if (encryptedMsg != null) {
-            Log.d("TAG", "encryptedMsg" + Util.byteArrayToHexString(encryptedMsg, ' ', true));
+            Log.d("TAG", "encryptedMsg" + Util.byteArrayToHexString(encryptedMsg));
         } else {
             Log.d("TAG", "encryptedMsg null");
         }

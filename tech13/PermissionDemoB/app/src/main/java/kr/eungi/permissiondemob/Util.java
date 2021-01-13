@@ -15,6 +15,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -56,28 +57,39 @@ public class Util {
             byte[] mdDigest = md.digest();
             String keyHash = Base64.encodeToString(mdDigest, Base64.DEFAULT);
 
-            Log.d("mdDigest", byteArrayToHexString(mdDigest, ' ', true));
-            Log.d("keyHash", keyHash);
+            Log.d("TAG", "mdDigest: " + byteArrayToHexString(mdDigest));
+            Log.d("TAG", "keyHash" + keyHash);
             return keyHash;
         } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException e) { }
         return null;
     }
 
     /**
-     * AES256
-     * 예제 [13-16] ...
-     * @param buf
-     * @param key 비밀키 생성의 시드가 되는 임의의 바이트 배열
-     * @param iv 초기화 벡터
-     * @return
+     * 예제 [13-16] AES256 에서의 암호화
+     * @param keyStr 비밀키 생성의 시드가 되는 임의의 바이트 배열.
+     *            AES only supports key sizes of 16, 24 or 32 bytes
+     * @param ivStr 초기화 벡터. Must be 16 bytes
+     * @return 암호화 된 바이트배열
      */
     @Nullable
-    public static byte[] cipherEncrypt(byte[] buf, String key, String iv) {
+    public static byte[] cipherEncrypt(byte[] buf, String keyStr, String ivStr) {
+        byte[] keyBytes = keyStr.getBytes();
+        int keySize;
+        if (keyBytes.length <= 16) {
+            keySize = 16;
+        } else if (keyBytes.length <= 24) {
+            keySize = 24;
+        } else {
+            keySize = 32;
+        }
+        byte[] key = Arrays.copyOf(keyBytes, keySize);
+        byte[] iv = Arrays.copyOf(ivStr.getBytes(), 16);
+
         try {
             // 비밀키 생성
-            SecretKeySpec sksSpec = new SecretKeySpec(key.getBytes(), "AES");
+            SecretKeySpec sksSpec = new SecretKeySpec(key, "AES");
             // IV 생성
-            IvParameterSpec ivSpec = new IvParameterSpec(iv.getBytes());
+            IvParameterSpec ivSpec = new IvParameterSpec(iv);
             // Cipher 클래스 초기화
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             cipher.init(Cipher.ENCRYPT_MODE, sksSpec, ivSpec);
@@ -86,11 +98,18 @@ public class Util {
         } catch (NoSuchPaddingException|NoSuchAlgorithmException|
                 InvalidAlgorithmParameterException|InvalidKeyException|
                 BadPaddingException|IllegalBlockSizeException e) {
+            Log.e("TAG", "cipherEncrypt", e);
         } finally {
 
         }
         return null;
     }
+
+
+    public static String byteArrayToHexString(byte[] a) {
+        return byteArrayToHexString(a, ' ', true);
+    }
+
 
     public static String byteArrayToHexString(byte[] a, char regex, boolean isUpperCase) {
         StringBuilder sb = new StringBuilder();
