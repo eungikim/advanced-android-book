@@ -10,11 +10,10 @@
 
 ## keytool cmd
 
-* Get key hash(use gitbash)
+* __Get key hash(use gitbash)__<br/>
 keytool -exportcert -alias androiddebugkey -keystore /c/Users/username/.android/debug.keystore | openssl sha1 -binary | openssl base64<br/>
 ㄴ%sha256 가능<br/>
 ㄴ%%주의점 : 에러메세지를 base64 로 엔코딩하기때문에 이상한 값이 뜰 수 있으므로 주의! 비밀번호를 물어보는지 확인하라
 
-
-* Get key fingerprint(md5, sha1, sha256)
+* __Get key fingerprint(md5, sha1, sha256)__<br/>
 keytool -list -v -keystore "C:\Users\username\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
