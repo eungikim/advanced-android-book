@@ -3,7 +3,7 @@
 
 ## How to xxx?
 ![Right click menu](./README/1_Right_click_menu.png)
-![Show inspection scope](./README/2_Show_inspection_scope)
+![Show inspection scope](./README/2_Show_inspection_scope.png)
 ![Lint result](./README/3_Lint_result.png)
 
 ## build config
