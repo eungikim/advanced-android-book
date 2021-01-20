@@ -12,5 +12,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    // TODO: See README
+    // TODO: See README for how to lint check.
 }
