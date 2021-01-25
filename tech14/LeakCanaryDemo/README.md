@@ -5,8 +5,8 @@
 
 ## Ref
 * [LeakCanary DOC](https://square.github.io/leakcanary/)
-* [Code recipes](https://square.github.io/leakcanary/recipes/)
-* [Upgrading to LeakCanary 2](https://square.github.io/leakcanary/upgrading-to-leakcanary-2.0)
+  * [Code recipes](https://square.github.io/leakcanary/recipes/)
+  * [Upgrading to LeakCanary 2](https://square.github.io/leakcanary/upgrading-to-leakcanary-2.0)
 
 ## build config
 * com.android.tools.build:gradle:4.0.2
@@ -37,7 +37,9 @@ Confirm that LeakCanary is running on startup by filtering on the LeakCanary tag
 10:37:08.940 4625-4625/leakcanarydemo W/.leakcanarydem: Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (light greylist, reflection)
 10:37:08.940 4625-4625/leakcanarydemo W/.leakcanarydem: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (light greylist, reflection)
 
+>>>>> This
 10:37:09.054 4625-4670/leakcanarydemo D/LeakCanary: LeakCanary is running and ready to detect memory leaks.
+>>>>> Log
 
 10:37:09.070 4625-4625/leakcanarydemo W/.leakcanarydem: Accessing hidden method Landroid/graphics/Insets;->of(IIII)Landroid/graphics/Insets; (light greylist, linking)
 10:37:10.688 4625-4679/leakcanarydemo D/LeakCanary: Setting up flushing for Thread[LeakCanary-Heap-Dump,5,main]
