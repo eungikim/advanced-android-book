@@ -9,12 +9,15 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * 네트워크 연결을 확인하는 BroadcastReceiver
+ * Not working
  */
 public class MyReceiver extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("MyReceiver", "onReceive");
+        /* Declaring a broadcastreceiver for
+         * android.net.conn.CONNECTIVITY_CHANGE is deprecated for apps targeting N and higher.
+         * In general, apps should not rely on this broadcast and instead use WorkManager. */
         Intent i = new Intent(NetworkCheckFragment.ACTION_CHECK_INTERNET);
         i.putExtra(NetworkCheckFragment.KEY_CHECK_INTERNET,
                 NetworkCheckFragment.isInternetConnected(context));
