@@ -1,9 +1,7 @@
 ## 변경사항
-* Retrofit2 의 Rx Adapter, RxJava3 사용
-* 데이터 바인딩 선언 최신화
-* RelativeLayout 을 ConstraintLayout 으로 대체
+* CONNECTIVITY_ACTION 을 받는 BroadcastReceiver 를 activity 에 명시적으로 등록
 
 ## build config
-* com.android.tools.build:gradle:4.1.1
+* com.android.tools.build:gradle:4.0.2
 * compileSdkVersion 30
 * buildToolsVersion "30.0.3"
