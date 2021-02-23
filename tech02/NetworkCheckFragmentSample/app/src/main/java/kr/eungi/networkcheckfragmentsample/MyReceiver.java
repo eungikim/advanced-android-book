@@ -10,6 +10,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 /**
  * 네트워크 연결을 확인하는 BroadcastReceiver
  * Not working
+ * @see NetworkCheckFragment#mReceiver
  */
 public class MyReceiver extends BroadcastReceiver {
     @Override
